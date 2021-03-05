@@ -16,10 +16,8 @@ export const operatorToFunctionObject = {
 
 // This function will return result using previously selected operator
 export const getNewResultWithLastValue = ({ operator, lastNumber, result }) => {
-  console.log(operator, lastNumber, result)
   if (!operator) {
     const newResult = Number(lastNumber);
-    console.log(newResult, lastNumber);
     return newResult ? newResult : 0;
   }
 

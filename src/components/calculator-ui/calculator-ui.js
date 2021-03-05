@@ -41,7 +41,6 @@ export default function CalculatorUI(props) {
 
       // if operator is already selected then overide previously selected operator
       if (!userInput.lastNumber) {
-        console.log("here");
         setUserInput({
           ...userInput,
           operator: value,
