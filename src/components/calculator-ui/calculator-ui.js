@@ -12,7 +12,7 @@ import { BUTTONS, SCIENTIFIC_BUTTONS } from "./calculator-ui.constant";
 import {
   getValueWithOldValue,
   getNewResultWithLastValue,
-  getScientificOperatorResult,
+  getSpecialOperatorResult,
 } from "./calculator-ui.utils";
 
 export default function CalculatorUI(props) {
@@ -27,13 +27,13 @@ export default function CalculatorUI(props) {
 
   const inputButtonClickHandler = (value, isOperator, scientific) => {
     if (isOperator) {
-      // Will be executed only if keys from scientific calculator is used
+      // Will be executed only if keys is special operator
       if (scientific) {
         setUserInput({
           ...userInput,
           operator: "",
-          lastNumber: getScientificOperatorResult(userInput, value),
-          result: getScientificOperatorResult(userInput, value),
+          lastNumber: getSpecialOperatorResult(userInput, value),
+          result: getSpecialOperatorResult(userInput, value),
           showResult: true,
         });
         return;
@@ -41,6 +41,7 @@ export default function CalculatorUI(props) {
 
       // if operator is already selected then overide previously selected operator
       if (!userInput.lastNumber) {
+        console.log("here");
         setUserInput({
           ...userInput,
           operator: value,

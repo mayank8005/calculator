@@ -6,14 +6,13 @@ export default function InputButton(props) {
     props.buttonAction(
       props.buttonData.value,
       props.buttonData.operator,
-      props.buttonData.scientific
+      props.buttonData.special
     );
   };
 
   return (
     <button className="input-button" onClick={onClickHandler}>
-      {" "}
-      {props.buttonData.label}{" "}
+      {props.buttonData.label}
     </button>
   );
 }

@@ -34,8 +34,8 @@ export const getNewResultWithLastValue = ({ operator, lastNumber, result }) => {
     : 0;
 };
 
-// This function will return result for scientific operators
-export const getScientificOperatorResult = (userState, newOperator) => {
+// This function will return result for special operators
+export const getSpecialOperatorResult = (userState, newOperator) => {
   const latestNumber = userState.result ? userState.result : userState.lastNumber;
   return latestNumber && operatorToFunctionObject[newOperator] ?
     operatorToFunctionObject[newOperator](latestNumber) :
