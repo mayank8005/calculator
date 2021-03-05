@@ -1,7 +1,7 @@
 import './App.css';
 
 //importing components
-import MainContainer from './components/main-container/main-conatiner';
+import MainContainer from './components/main-container/main-container';
 
 function App() {
   return (
