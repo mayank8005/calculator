@@ -3,15 +3,19 @@ import "./calculator-ui.css";
 
 //importing child component
 import InputButton from "./input-button/input-button.js";
+import Header from "./header/header";
 
 //importing constants
 import { BUTTONS, SCIENTIFIC_BUTTONS } from "./calculator-ui.constant";
 
 //importing utility functions
-import { getValueWithOldValue, getNewResultWithLastValue, getScientificOperatorResult } from './calculator-ui.utils'
+import {
+  getValueWithOldValue,
+  getNewResultWithLastValue,
+  getScientificOperatorResult,
+} from "./calculator-ui.utils";
 
 export default function CalculatorUI() {
-    
   const [userInput, setUserInput] = useState({
     operator: "",
     lastNumber: "",
@@ -19,9 +23,10 @@ export default function CalculatorUI() {
     showResult: true,
   });
 
+  const [scientificMode, setScientificMode] = useState(false);
+
   const inputButtonClickHandler = (value, isOperator, scientific) => {
     if (isOperator) {
-        
       if (scientific) {
         setUserInput({
           ...userInput,
@@ -34,34 +39,41 @@ export default function CalculatorUI() {
         return;
       }
 
-        // if operator is already selected then overide previously selected operator
-        if(!userInput.lastNumber) {
-          setUserInput({
-            ...userInput,
-            operator: value,
-          });
-        } else {
-          setUserInput({
-            ...userInput,
-            lastNumber: '',
-            result: getNewResultWithLastValue(userInput),
-            showResult: true,
-            operator: value,
-          });
-        }
+      // if operator is already selected then overide previously selected operator
+      if (!userInput.lastNumber) {
+        setUserInput({
+          ...userInput,
+          operator: value,
+        });
+      } else {
+        setUserInput({
+          ...userInput,
+          lastNumber: "",
+          result: getNewResultWithLastValue(userInput),
+          showResult: true,
+          operator: value,
+        });
+      }
     } else {
-        const newInputState = {
-            ...userInput,
-            lastNumber: getValueWithOldValue(userInput.lastNumber, value),
-            showResult: false,
-          };
-          setUserInput(newInputState);
+      const newInputState = {
+        ...userInput,
+        lastNumber: getValueWithOldValue(userInput.lastNumber, value),
+        showResult: false,
+      };
+      setUserInput(newInputState);
     }
   };
 
   return (
     <div className="calculator-container">
-      <div className="user-display"> {userInput.showResult ? userInput.result : userInput.lastNumber} </div>
+      <Header
+        scientificMode={scientificMode}
+        setScientificMode={setScientificMode}
+      />
+      <div className="user-display">
+        {" "}
+        {userInput.showResult ? userInput.result : userInput.lastNumber}{" "}
+      </div>
       <div className="grid button-grid">
         {BUTTONS.map((btn) => (
           <InputButton
@@ -71,15 +83,17 @@ export default function CalculatorUI() {
           />
         ))}
       </div>
-      <div className="grid scientific-buttons">
-        {SCIENTIFIC_BUTTONS.map((btn) => (
-          <InputButton
-            key={btn.value}
-            buttonData={btn}
-            buttonAction={inputButtonClickHandler}
-          />
-        ))}
-      </div>
+      {scientificMode ? (
+        <div className="grid scientific-buttons">
+          {SCIENTIFIC_BUTTONS.map((btn) => (
+            <InputButton
+              key={btn.value}
+              buttonData={btn}
+              buttonAction={inputButtonClickHandler}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
