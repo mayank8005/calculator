@@ -16,3 +16,10 @@ export const BUTTONS = [
     {label: '=', display: true, value: '=', operator: true},
     {label: 'Divide (/)', display: true, value: '/', operator: true},
 ];
+
+
+export const SCIENTIFIC_BUTTONS = [
+    {label: 'Sign button', value: 'sign', operator: true, scientific: true},
+    {label: 'Square', value: 'square', operator: true, scientific: true},
+    {label: 'Square root', value: 'root', operator: true, scientific: true},
+];
