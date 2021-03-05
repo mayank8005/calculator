@@ -27,6 +27,7 @@ export default function CalculatorUI(props) {
 
   const inputButtonClickHandler = (value, isOperator, scientific) => {
     if (isOperator) {
+      // Will be executed only if keys from scientific calculator is used
       if (scientific) {
         setUserInput({
           ...userInput,
@@ -35,7 +36,6 @@ export default function CalculatorUI(props) {
           result: getScientificOperatorResult(userInput, value),
           showResult: true,
         });
-
         return;
       }
 
@@ -55,6 +55,7 @@ export default function CalculatorUI(props) {
         });
       }
     } else {
+      // numerical key input
       const newInputState = {
         ...userInput,
         lastNumber: getValueWithOldValue(userInput.lastNumber, value),

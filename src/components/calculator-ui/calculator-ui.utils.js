@@ -1,5 +1,6 @@
 export const getValueWithOldValue = (oldValue, newValue) => oldValue + newValue;
 
+// This object contain logic for each operator
 export const operatorToFunctionObject = {
   "+": (oldValue, newValue) => newValue + oldValue,
   "-": (oldValue, newValue) => newValue - oldValue,
@@ -9,9 +10,11 @@ export const operatorToFunctionObject = {
   "clear": (_, __) => 0,
   "sign": (number) => number * -1,
   "square": (number) => number * number,
-  "root": () => 0,
+  "root": (number) => Math.sqrt(number),
 };
 
+
+// This function will return result using previously selected operator
 export const getNewResultWithLastValue = ({ operator, lastNumber, result }) => {
   console.log(operator, lastNumber, result)
   if (!operator) {
@@ -31,6 +34,7 @@ export const getNewResultWithLastValue = ({ operator, lastNumber, result }) => {
     : 0;
 };
 
+// This function will return result for scientific operators
 export const getScientificOperatorResult = (userState, newOperator) => {
   const latestNumber = userState.result ? userState.result : userState.lastNumber;
   return latestNumber && operatorToFunctionObject[newOperator] ?
