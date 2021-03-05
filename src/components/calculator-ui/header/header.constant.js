@@ -1,3 +1,9 @@
 export const LABEL = {
-    scientificMode: 'Scientific Mode'
+    scientificMode: 'Scientific Mode',
+    darkMode: 'Dark Mode'
+}
+
+export const THEMES = {
+    light: 'light',
+    dark: 'dark',
 }

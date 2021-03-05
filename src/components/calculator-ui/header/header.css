@@ -1,5 +1,9 @@
 .scientific-mode-control {
-    color: white;
-    font-weight: bold;
     text-align: left;
+}
+
+.controls {
+    color: white;
+    display: inline;
+    font-weight: bold;
 }
