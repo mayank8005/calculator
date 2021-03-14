@@ -16,6 +16,7 @@ import {
 } from "./calculator-ui.utils";
 
 export default function CalculatorUI(props) {
+
   const [userInput, setUserInput] = useState({
     operator: "",
     lastNumber: "",
@@ -70,8 +71,6 @@ export default function CalculatorUI(props) {
       <Header
         scientificMode={scientificMode}
         setScientificMode={setScientificMode}
-        setTheme={props.setTheme}
-        theme={props.theme}
       />
       <div className="user-display">
         {" "}

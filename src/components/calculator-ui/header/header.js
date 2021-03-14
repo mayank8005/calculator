@@ -1,17 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./header.css";
 
+//importing themeContext
+import { ThemeContext } from "../../main-container/theme.context";
+
 //importing constant
-import { LABEL, THEMES } from "./header.constant";
+import { LABEL } from "./header.constant";
+import { THEME } from '../../main-container/main-container.constant';
 
 export default function Header(props) {
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   const toggleScientificMode = () => {
     props.setScientificMode(!props.scientificMode);
   };
 
-  const toggleTheme = () => {
-    props.setTheme(props.theme === THEMES.dark ? THEMES.light : THEMES.dark);
-  };
 
   return (
     <header>
@@ -30,7 +34,7 @@ export default function Header(props) {
         <input
           type="checkbox"
           name="dark-mode"
-          checked={props.theme === THEMES.dark}
+          checked={theme === THEME.DARK}
           onChange={toggleTheme}
         />
       </div>
